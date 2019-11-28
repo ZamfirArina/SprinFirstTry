@@ -1,45 +1,61 @@
 package com.webapp.sport;
 
 import org.springframework.web.bind.annotation.*;
-
-import javax.validation.Valid;
 import java.util.List;
+
 
 @RestController
 @RequestMapping("/sport")
 public class SportWebService {
-    TrainersRepository tRep = new TrainersRepository();
-    PlayersRepository pRep = new PlayersRepository();
+    PlayerRepository pRep = new PlayerRepository();
+    TrainerRepository tRep = new TrainerRepository();
+
 
     @GetMapping
     public String test() {
-        return "First try in Spring Web";
-    }
-
-    @GetMapping("/trainers")
-    public List<String> trainersList() {
-        return tRep.getTrainers();
-    }
+        return "First try in Spring Web"; }
 
     @GetMapping("/players")
-    public List<String> playersList() {
+    public List<Player> playersList() {
         return pRep.getPlayers();
     }
 
-    @PostMapping("addTrainers/{name}")
-    public void addTrainers(@PathVariable String name) {
-       tRep.addTrainers (name);
-
+    @GetMapping("/trainers")
+    public List<Trainer> trainersList() {
+        return tRep.getTrainers();
     }
 
-    @PutMapping ("/addPlayers/{name}")
-    public void addPlayers(@PathVariable("name")String name) {
-        pRep.addPlayers(name);
-
+    @PostMapping("/addPlayer")
+    public void addPlayer(@RequestBody Player player) {
+        pRep.addPlayer(player);
     }
 
-    @DeleteMapping("delPlayers/{name}")
-    public void delPlayers(@PathVariable("name") String name) {
-        pRep.delPlayers(name);
+    @PostMapping("addTrainer")
+    public void addTrainer(@RequestBody Trainer trainer) {
+        tRep.addTrainer(trainer);
     }
+
+    @PutMapping("/updatePlayer/{firstName}")
+    public void updatePlayer(@PathVariable String firstName, @RequestBody Player player) {
+        pRep.delPlayer(firstName);
+        pRep.addPlayer(player);
+    }
+
+    @PutMapping("/updateTrainer")
+    public void uppdateTrainer(@RequestParam String firstName, @RequestBody Trainer trainer) {
+        tRep.delTrainer(firstName);
+        tRep.addTrainer(trainer);
+    }
+
+    @DeleteMapping("/delPlayer")
+    public void delPlayer(@PathVariable("firstName") String firstName) {
+        pRep.delPlayer(firstName);
+    }
+
+    @DeleteMapping("/delTrainer")
+    public void delTrainer(@RequestParam String firstName) {
+        tRep.delTrainer(firstName);
+    }
+
+
 }
