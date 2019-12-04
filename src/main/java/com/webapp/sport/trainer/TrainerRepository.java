@@ -1,4 +1,6 @@
-package com.webapp.sport;
+package com.webapp.sport.trainer;
+
+import com.webapp.sport.trainer.Trainer;
 
 import java.util.List;
 import java.util.ArrayList;

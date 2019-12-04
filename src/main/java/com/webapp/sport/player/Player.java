@@ -1,4 +1,4 @@
-package com.webapp.sport;
+package com.webapp.sport.player;
 
 public class Player {
     private String lastName;

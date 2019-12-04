@@ -1,4 +1,6 @@
-package com.webapp.sport;
+package com.webapp.sport.player;
+
+import com.webapp.sport.player.Player;
 
 import java.util.ArrayList;
 import java.util.List;
